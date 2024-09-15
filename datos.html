@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Pacientes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Datos de Pacientes</h1>
+    <table id="datosPacientes">
+        <thead>
+            <tr>
+                <th>ID Paciente</th>
+                <th>Fecha Evaluación</th>
+                <th>Puntaje SOFA</th>
+                <th>Recomendación</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button id="exportarExcel">Exportar a Excel</button>
+    <script src="lib/xlsx.full.min.js"></script>
+    <script src="js/datos.js"></script>
+</body>
+</html>
