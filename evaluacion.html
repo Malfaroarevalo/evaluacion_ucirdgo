@@ -7,24 +7,201 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Formulario de Evaluación</h1>
+    <h1>Formulario de Evaluación de Ingreso a UCI</h1>
     <form id="evaluacionForm">
-        <!-- Incluir aquí los campos del formulario basados en el documento proporcionado -->
         <h2>1. Evaluación de Disfunción Multiorgánica (SOFA Score)</h2>
-        <!-- Campos SOFA -->
         
+        <h3>Sistema respiratorio (PaO₂/FiO₂ ratio)</h3>
+        <select name="sofa_respiratorio" required>
+            <option value="">Seleccione una opción</option>
+            <option value="0">> 400</option>
+            <option value="1">≤ 400</option>
+            <option value="2">≤ 300</option>
+            <option value="3">≤ 200 (con ventilación mecánica)</option>
+            <option value="4">≤ 100 (con ventilación mecánica)</option>
+        </select>
+
+        <h3>Sistema de coagulación (Recuento de plaquetas x10³/µL)</h3>
+        <select name="sofa_coagulacion" required>
+            <option value="">Seleccione una opción</option>
+            <option value="0">> 150</option>
+            <option value="1">≤ 150</option>
+            <option value="2">≤ 100</option>
+            <option value="3">≤ 50</option>
+            <option value="4">≤ 20</option>
+        </select>
+
+        <h3>Sistema hepático (Bilirrubina sérica mg/dL)</h3>
+        <select name="sofa_hepatico" required>
+            <option value="">Seleccione una opción</option>
+            <option value="0">< 1.2</option>
+            <option value="1">1.2 - 1.9</option>
+            <option value="2">2.0 - 5.9</option>
+            <option value="3">6.0 - 11.9</option>
+            <option value="4">≥ 12.0</option>
+        </select>
+
+        <h3>Sistema cardiovascular (Hipotensión)</h3>
+        <select name="sofa_cardiovascular" required>
+            <option value="">Seleccione una opción</option>
+            <option value="0">No hipotensión</option>
+            <option value="1">Presión arterial media < 70 mmHg</option>
+            <option value="2">Uso de dopamina ≤ 5 µg/kg/min o dobutamina (cualquier dosis)</option>
+            <option value="3">Uso de dopamina > 5 µg/kg/min o epinefrina ≤ 0.1 µg/kg/min o norepinefrina ≤ 0.1 µg/kg/min</option>
+            <option value="4">Uso de dopamina > 15 µg/kg/min o epinefrina > 0.1 µg/kg/min o norepinefrina > 0.1 µg/kg/min</option>
+        </select>
+
+        <h3>Sistema neurológico (Escala de Glasgow)</h3>
+        <select name="sofa_neurologico" required>
+            <option value="">Seleccione una opción</option>
+            <option value="0">15</option>
+            <option value="1">13 - 14</option>
+            <option value="2">10 - 12</option>
+            <option value="3">6 - 9</option>
+            <option value="4">< 6</option>
+        </select>
+
+        <h3>Sistema renal (Creatinina sérica mg/dL o diuresis ml/día)</h3>
+        <select name="sofa_renal" required>
+            <option value="">Seleccione una opción</option>
+            <option value="0">< 1.2</option>
+            <option value="1">1.2 - 1.9</option>
+            <option value="2">2.0 - 3.4</option>
+            <option value="3">3.5 - 4.9 o diuresis < 500 ml/día</option>
+            <option value="4">≥ 5.0 o diuresis < 200 ml/día</option>
+        </select>
+
         <h2>2. Evaluación de Shock</h2>
-        <!-- Campos de evaluación de shock -->
         
+        <h3>Tipo de shock</h3>
+        <select name="tipo_shock" required>
+            <option value="">Seleccione una opción</option>
+            <option value="hipovolemico">Hipovolémico</option>
+            <option value="cardiogenico">Cardiogénico</option>
+            <option value="distributivo">Distributivo</option>
+            <option value="obstructivo">Obstructivo</option>
+        </select>
+
+        <h3>Criterios clínicos</h3>
+        <label>
+            <input type="checkbox" name="shock_hipotension"> Hipotensión
+        </label>
+        <label>
+            <input type="checkbox" name="shock_taquicardia"> Taquicardia
+        </label>
+        <label>
+            <input type="checkbox" name="shock_bradicardia"> Bradicardia
+        </label>
+        <label>
+            <input type="checkbox" name="shock_oliguria"> Oliguria
+        </label>
+        <label>
+            <input type="checkbox" name="shock_anuria"> Anuria
+        </label>
+        <label>
+            <input type="checkbox" name="shock_lactato_elevado"> Lactato sérico elevado
+        </label>
+        <label>
+            <input type="checkbox" name="shock_piel_fria"> Piel fría y húmeda
+        </label>
+        <label>
+            <input type="checkbox" name="shock_piel_caliente"> Piel caliente y seca (distributivo)
+        </label>
+
         <h2>3. Evaluación de Insuficiencia Renal Aguda (IRA)</h2>
-        <!-- Campos de evaluación IRA -->
         
+        <h3>Criterios RIFLE</h3>
+        <select name="rifle_criterio" required>
+            <option value="">Seleccione una opción</option>
+            <option value="risk">Risk: Creatinina × 1.5 o FG > 25% o Diuresis < 0.5 ml/kg/hora durante 6 horas</option>
+            <option value="injury">Injury: Creatinina × 2 o FG > 50% o Diuresis < 0.5 ml/kg/hora durante 12 horas</option>
+            <option value="failure">Failure: Creatinina × 3, creatinina ≥ 4 mg/dL o FG > 75% o Diuresis < 0.3 ml/kg/hora durante 24 horas o anuria durante 12 horas</option>
+            <option value="loss">Loss: Pérdida completa de la función renal > 4 semanas</option>
+            <option value="end-stage">End-stage: Pérdida completa de la función renal > 3 meses</option>
+        </select>
+
+        <h3>Criterios AKIN</h3>
+        <select name="akin_criterio" required>
+            <option value="">Seleccione una opción</option>
+            <option value="estadio1">Estadio 1: Creatinina ≥ 0.3 mg/dL o 1.5-2 veces el valor basal o Diuresis < 0.5 ml/kg/hora durante 6 horas</option>
+            <option value="estadio2">Estadio 2: Creatinina 2-3 veces el valor basal o Diuresis < 0.5 ml/kg/hora durante 12 horas</option>
+            <option value="estadio3">Estadio 3: Creatinina ≥ 3 veces el valor basal, creatinina ≥ 4 mg/dL o necesidad de terapia de reemplazo renal o Diuresis < 0.3 ml/kg/hora durante 24 horas o anuria durante 12 horas</option>
+        </select>
+
         <h2>4. Evaluación de Hemorragia Digestiva Alta Severa Activa</h2>
-        <!-- Campos de evaluación de hemorragia -->
         
+        <h3>Signos clínicos</h3>
+        <label>
+            <input type="checkbox" name="hda_hematemesis"> Hematemesis
+        </label>
+        <label>
+            <input type="checkbox" name="hda_melena"> Melena
+        </label>
+        <label>
+            <input type="checkbox" name="hda_hematoquecia"> Hematoquecia
+        </label>
+        <label>
+            <input type="checkbox" name="hda_hipotension"> Hipotensión
+        </label>
+        <label>
+            <input type="checkbox" name="hda_taquicardia"> Taquicardia
+        </label>
+        <label>
+            <input type="checkbox" name="hda_piel_fria"> Piel fría y pálida
+        </label>
+        <label>
+            <input type="checkbox" name="hda_oliguria"> Oliguria
+        </label>
+
+        <h3>Criterios endoscópicos</h3>
+        <label>
+            <input type="checkbox" name="hda_sangrado_activo"> Sangrado activo visible
+        </label>
+        <label>
+            <input type="checkbox" name="hda_vaso_visible"> Vaso visible no sangrante
+        </label>
+        <label>
+            <input type="checkbox" name="hda_coagulo_adherido"> Coágulo adherido
+        </label>
+        <label>
+            <input type="checkbox" name="hda_lesiones_alto_riesgo"> Lesiones de alto riesgo
+        </label>
+
+        <h3>Parámetros de laboratorio</h3>
+        <label>
+            Hemoglobina (mg/dL):
+            <input type="number" name="hda_hemoglobina" step="0.1" required>
+        </label>
+        <label>
+            Hematocrito (%):
+            <input type="number" name="hda_hematocrito" step="0.1" required>
+        </label>
+        <label>
+            Relación BUN/Creatinina > 30:
+            <input type="checkbox" name="hda_bun_creatinina">
+        </label>
+
         <h2>5. Evaluación de Síndrome de Distrés Respiratorio Agudo (SDRA)</h2>
-        <!-- Campos de evaluación SDRA -->
         
+        <label>
+            <input type="checkbox" name="sdra_inicio_agudo" required> Inicio agudo
+        </label>
+        <label>
+            <input type="checkbox" name="sdra_opacidades_bilaterales" required> Opacidades bilaterales
+        </label>
+        <label>
+            <input type="checkbox" name="sdra_edema_no_cardiogenico" required> Edema pulmonar no cardiogénico
+        </label>
+
+        <h3>Hipoxemia (PaO₂/FiO₂)</h3>
+        <select name="sdra_hipoxemia" required>
+            <option value="">Seleccione una opción</option>
+            <option value="no_sdra">> 300 mmHg (No SDRA)</option>
+            <option value="leve">200-300 mmHg (Leve)</option>
+            <option value="moderado">100-200 mmHg (Moderado)</option>
+            <option value="grave">≤ 100 mmHg (Grave)</option>
+        </select>
+
         <button type="submit">Evaluar</button>
     </form>
     <script src="js/evaluacion.js"></script>
