@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados de Evaluación</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Resultados de la Evaluación</h1>
-    <div id="resultados"></div>
-    <button id="guardarBtn">Guardar Evaluación</button>
-    <a href="evaluacion.html">Nueva Evaluación</a>
+    <div class="container">
+        <h1>Resultados de la Evaluación</h1>
+        <div id="resultados" class="results fade-in">
+            <!-- Los resultados se insertarán aquí dinámicamente -->
+        </div>
+        <div class="buttons">
+            <button id="guardarBtn" class="btn">Guardar Evaluación</button>
+            <a href="evaluacion.html" class="btn btn-secondary">Nueva Evaluación</a>
+        </div>
+    </div>
     <script src="js/resultados.js"></script>
 </body>
 </html>

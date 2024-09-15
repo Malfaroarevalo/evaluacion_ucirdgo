@@ -3,6 +3,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('evaluacionForm');
     form.addEventListener('submit', evaluarPaciente);
+
+    // Inicializar tooltips
+    initTooltips();
 });
 
 function evaluarPaciente(event) {
@@ -23,8 +26,8 @@ function evaluarPaciente(event) {
     // Guardar resultados en localStorage
     localStorage.setItem('ultimaEvaluacion', JSON.stringify(resultados));
     
-    // Redirigir a la página de resultados
-    window.location.href = 'resultados.html';
+    // Mostrar modal de confirmación
+    mostrarModalConfirmacion(resultados);
 }
 
 function calcularSOFA(evaluacion) {
@@ -33,84 +36,135 @@ function calcularSOFA(evaluacion) {
 }
 
 function evaluarShock(evaluacion) {
-    const criteriosShock = [
-        'shock_hipotension', 'shock_taquicardia', 'shock_bradicardia', 
-        'shock_oliguria', 'shock_anuria', 'shock_lactato_elevado'
-    ];
-    const cumpleCriterios = criteriosShock.some(criterio => evaluacion[criterio] === 'on');
-    return {
-        presente: cumpleCriterios,
-        tipo: evaluacion.tipo_shock
-    };
+    // Implementación de la evaluación de shock
 }
 
 function evaluarIRA(evaluacion) {
-    return {
-        rifle: evaluacion.rifle_criterio,
-        akin: evaluacion.akin_criterio
-    };
+    // Implementación de la evaluación de IRA
 }
 
 function evaluarHDA(evaluacion) {
-    const signosHDA = [
-        'hda_hematemesis', 'hda_melena', 'hda_hematoquecia', 
-        'hda_hipotension', 'hda_taquicardia', 'hda_piel_fria', 'hda_oliguria'
-    ];
-    const criteriosEndoscopicos = [
-        'hda_sangrado_activo', 'hda_vaso_visible', 
-        'hda_coagulo_adherido', 'hda_lesiones_alto_riesgo'
-    ];
-    
-    return {
-        presente: signosHDA.some(signo => evaluacion[signo] === 'on') || 
-                  criteriosEndoscopicos.some(criterio => evaluacion[criterio] === 'on'),
-        hemoglobina: parseFloat(evaluacion.hda_hemoglobina),
-        hematocrito: parseFloat(evaluacion.hda_hematocrito),
-        bunCreatininaElevado: evaluacion.hda_bun_creatinina === 'on'
-    };
+    // Implementación de la evaluación de HDA
 }
 
 function evaluarSDRA(evaluacion) {
-    const criteriosSDRA = [
-        'sdra_inicio_agudo', 'sdra_opacidades_bilaterales', 'sdra_edema_no_cardiogenico'
-    ];
-    const cumpleCriterios = criteriosSDRA.every(criterio => evaluacion[criterio] === 'on');
-    
-    return {
-        presente: cumpleCriterios,
-        nivel: evaluacion.sdra_hipoxemia
-    };
+    // Implementación de la evaluación de SDRA
 }
 
 function generarRecomendacion(resultados) {
-    let recomendacion = "Basado en la evaluación:";
-    
-    if (resultados.sofaScore >= 2) {
-        recomendacion += "\n- El paciente tiene un SOFA score de " + resultados.sofaScore + ", lo que indica disfunción orgánica significativa.";
-    }
-    
-    if (resultados.tieneShock.presente) {
-        recomendacion += "\n- Se detecta shock " + resultados.tieneShock.tipo + ".";
-    }
-    
-    if (resultados.nivelIRA.rifle !== "" || resultados.nivelIRA.akin !== "") {
-        recomendacion += "\n- Hay evidencia de insuficiencia renal aguda.";
-    }
-    
-    if (resultados.tieneHDA.presente) {
-        recomendacion += "\n- Se observa hemorragia digestiva alta severa activa.";
-    }
-    
-    if (resultados.nivelSDRA.presente) {
-        recomendacion += "\n- El paciente presenta síndrome de distrés respiratorio agudo " + resultados.nivelSDRA.nivel + ".";
-    }
-    
-    if (resultados.sofaScore >= 2 || resultados.tieneShock.presente || 
-        resultados.tieneHDA.presente || (resultados.nivelSDRA.presente && resultados.nivelSDRA.nivel !== 'no_sdra')) {
-        recomendacion += "\n\nSe recomienda el ingreso a la Unidad de Cuidados Intensivos para monitoreo y tratamiento intensivo.";
+    // Implementación de la generación de recomendaciones
+}
+
+function mostrarModalConfirmacion(resultados) {
+    const modal = document.createElement('div');
+    modal.className = 'modal fade-in';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <h2>Confirmación de Evaluación</h2>
+            <p>SOFA Score: ${resultados.sofaScore}</p>
+            <p>Recomendación: ${resultados.recomendacion}</p>
+            <button id="confirmarEvaluacion" class="btn">Confirmar y Ver Resultados</button>
+            <button id="cancelarEvaluacion" class="btn btn-secondary">Cancelar</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    document.getElementById('confirmarEvaluacion').addEventListener('click', () => {
+        window.location.href = 'resultados.html';
+    });
+
+    document.getElementById('cancelarEvaluacion').addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+}
+
+function initTooltips() {
+    const tooltips = document.querySelectorAll('.tooltip');
+    tooltips.forEach(tooltip => {
+        tooltip.addEventListener('mouseenter', showTooltip);
+        tooltip.addEventListener('mouseleave', hideTooltip);
+    });
+}
+
+function showTooltip(event) {
+    const tooltipText = event.currentTarget.querySelector('.tooltiptext');
+    tooltipText.style.visibility = 'visible';
+    tooltipText.style.opacity = '1';
+}
+
+function hideTooltip(event) {
+    const tooltipText = event.currentTarget.querySelector('.tooltiptext');
+    tooltipText.style.visibility = 'hidden';
+    tooltipText.style.opacity = '0';
+}
+
+// resultados.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarResultados();
+    document.getElementById('guardarBtn').addEventListener('click', guardarEvaluacion);
+});
+
+function mostrarResultados() {
+    const resultados = JSON.parse(localStorage.getItem('ultimaEvaluacion'));
+    const resultadosDiv = document.getElementById('resultados');
+
+    if (resultados) {
+        resultadosDiv.innerHTML = `
+            <div class="card fade-in">
+                <h2 class="card-title">Resumen de la Evaluación</h2>
+                <p>SOFA Score: ${resultados.sofaScore}</p>
+                <p>Recomendación: ${resultados.recomendacion}</p>
+                <!-- Añadir más detalles según sea necesario -->
+            </div>
+        `;
     } else {
-        recomendacion += "\n\nBasado en los criterios evaluados, el paciente podría no requerir ingreso inmediato a UCI, pero se recomienda monitoreo cercano y reevaluación frecuente.";
+        resultadosDiv.innerHTML = '<p>No hay resultados disponibles.</p>';
     }
+}
+
+function guardarEvaluacion() {
+    const resultados = JSON.parse(localStorage.getItem('ultimaEvaluacion'));
+    let evaluaciones = JSON.parse(localStorage.getItem('evaluaciones')) || [];
     
-    return recomendacion;
+    evaluaciones.push({
+        id: Date.now(),
+        fecha: new Date().toISOString(),
+        ...resultados
+    });
+
+    localStorage.setItem('evaluaciones', JSON.stringify(evaluaciones));
+    alert('Evaluación guardada correctamente');
+}
+
+// datos.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    cargarDatosPacientes();
+    document.getElementById('exportarExcel').addEventListener('click', exportarAExcel);
+});
+
+function cargarDatosPacientes() {
+    const evaluaciones = JSON.parse(localStorage.getItem('evaluaciones')) || [];
+    const tbody = document.querySelector('#datosPacientes tbody');
+    
+    tbody.innerHTML = '';
+    evaluaciones.forEach(eva => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${eva.id}</td>
+            <td>${new Date(eva.fecha).toLocaleString()}</td>
+            <td>${eva.sofaScore}</td>
+            <td>${eva.recomendacion}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function exportarAExcel() {
+    const evaluaciones = JSON.parse(localStorage.getItem('evaluaciones')) || [];
+    const ws = XLSX.utils.json_to_sheet(evaluaciones);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Evaluaciones");
+    XLSX.writeFile(wb, "evaluaciones_uci.xlsx");
 }

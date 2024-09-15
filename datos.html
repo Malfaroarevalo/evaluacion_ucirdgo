@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos de Pacientes</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Datos de Pacientes</h1>
-    <table id="datosPacientes">
-        <thead>
-            <tr>
-                <th>ID Paciente</th>
-                <th>Fecha Evaluación</th>
-                <th>Puntaje SOFA</th>
-                <th>Recomendación</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <button id="exportarExcel">Exportar a Excel</button>
-    <script src="lib/xlsx.full.min.js"></script>
+    <div class="container">
+        <h1>Datos de Pacientes</h1>
+        <div class="patient-table-container fade-in">
+            <table id="datosPacientes" class="patient-table">
+                <thead>
+                    <tr>
+                        <th>ID Paciente</th>
+                        <th>Fecha Evaluación</th>
+                        <th>Puntaje SOFA</th>
+                        <th>Recomendación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Los datos se insertarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+        <button id="exportarExcel" class="btn export-btn">Exportar a Excel</button>
+        <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="js/datos.js"></script>
 </body>
 </html>
