@@ -27,30 +27,150 @@
                     <option value="4">≤ 100 (con ventilación mecánica)</option>
                 </select>
 
-                <!-- Añadir los demás campos del SOFA Score aquí -->
+                <label>Sistema de coagulación (Recuento de plaquetas x10³/µL)</label>
+                <select name="sofa_coagulacion" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="0">> 150</option>
+                    <option value="1">≤ 150</option>
+                    <option value="2">≤ 100</option>
+                    <option value="3">≤ 50</option>
+                    <option value="4">≤ 20</option>
+                </select>
+
+                <label>Sistema hepático (Bilirrubina sérica mg/dL)</label>
+                <select name="sofa_hepatico" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="0">< 1.2</option>
+                    <option value="1">1.2 - 1.9</option>
+                    <option value="2">2.0 - 5.9</option>
+                    <option value="3">6.0 - 11.9</option>
+                    <option value="4">≥ 12.0</option>
+                </select>
+
+                <label>Sistema cardiovascular (Hipotensión)</label>
+                <select name="sofa_cardiovascular" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="0">No hipotensión</option>
+                    <option value="1">Presión arterial media < 70 mmHg</option>
+                    <option value="2">Dopamina ≤ 5 µg/kg/min o dobutamina (cualquier dosis)</option>
+                    <option value="3">Dopamina > 5 µg/kg/min o epinefrina ≤ 0.1 µg/kg/min o norepinefrina ≤ 0.1 µg/kg/min</option>
+                    <option value="4">Dopamina > 15 µg/kg/min o epinefrina > 0.1 µg/kg/min o norepinefrina > 0.1 µg/kg/min</option>
+                </select>
+
+                <label>Sistema neurológico (Escala de Glasgow)</label>
+                <select name="sofa_neurologico" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="0">15</option>
+                    <option value="1">13 - 14</option>
+                    <option value="2">10 - 12</option>
+                    <option value="3">6 - 9</option>
+                    <option value="4">< 6</option>
+                </select>
+
+                <label>Sistema renal (Creatinina sérica mg/dL o diuresis ml/día)</label>
+                <select name="sofa_renal" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="0">< 1.2</option>
+                    <option value="1">1.2 - 1.9</option>
+                    <option value="2">2.0 - 3.4</option>
+                    <option value="3">3.5 - 4.9 o diuresis < 500 ml/día</option>
+                    <option value="4">≥ 5.0 o diuresis < 200 ml/día</option>
+                </select>
             </div>
 
             <div class="section">
                 <h2>2. Evaluación de Shock</h2>
-                <!-- Campos de evaluación de shock -->
+                
+                <label>Tipo de shock</label>
+                <select name="tipo_shock" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="hipovolemico">Hipovolémico</option>
+                    <option value="cardiogenico">Cardiogénico</option>
+                    <option value="distributivo">Distributivo</option>
+                    <option value="obstructivo">Obstructivo</option>
+                </select>
+
+                <label>Hipotensión</label>
+                <input type="checkbox" name="hipotension" value="si"> Sí<br>
+                <input type="checkbox" name="hipotension" value="no"> No<br>
+
+                <label>Frecuencia cardíaca</label>
+                <input type="checkbox" name="frecuencia_cardiaca" value="taquicardia"> Taquicardia<br>
+                <input type="checkbox" name="frecuencia_cardiaca" value="bradicardia"> Bradicardia<br>
+
+                <label>Diuresis</label>
+                <input type="checkbox" name="diuresis" value="oliguria"> Oliguria<br>
+                <input type="checkbox" name="diuresis" value="anuria"> Anuria<br>
+
+                <label>Lactato sérico</label>
+                <input type="checkbox" name="lactato_serico" value="elevado"> Elevado<br>
+                <input type="checkbox" name="lactato_serico" value="normal"> Normal<br>
+
+                <label>Otros signos</label>
+                <input type="checkbox" name="otros_signos" value="piel_fria"> Piel fría y húmeda<br>
+                <input type="checkbox" name="otros_signos" value="piel_caliente"> Piel caliente y seca (distributivo)<br>
             </div>
 
             <div class="section">
                 <h2>3. Evaluación de Insuficiencia Renal Aguda (IRA)</h2>
-                <!-- Campos de evaluación IRA -->
+
+                <label>Criterios RIFLE</label>
+                <input type="checkbox" name="rifle" value="risk"> Risk<br>
+                <input type="checkbox" name="rifle" value="injury"> Injury<br>
+                <input type="checkbox" name="rifle" value="failure"> Failure<br>
+                <input type="checkbox" name="rifle" value="loss"> Loss<br>
+                <input type="checkbox" name="rifle" value="end_stage"> End-stage<br>
             </div>
 
             <div class="section">
                 <h2>4. Evaluación de Hemorragia Digestiva Alta Severa Activa</h2>
-                <!-- Campos de evaluación de hemorragia -->
+                
+                <label>Signos clínicos</label>
+                <input type="checkbox" name="hemorragia" value="hematemesis"> Hematemesis<br>
+                <input type="checkbox" name="hemorragia" value="melena"> Melena<br>
+                <input type="checkbox" name="hemorragia" value="hematoquecia"> Hematoquecia<br>
+                <input type="checkbox" name="hemorragia" value="hipotension"> Hipotensión<br>
+                <input type="checkbox" name="hemorragia" value="taquicardia"> Taquicardia<br>
+                <input type="checkbox" name="hemorragia" value="piel_fria_palida"> Piel fría y pálida<br>
+                <input type="checkbox" name="hemorragia" value="oliguria"> Oliguria<br>
+
+                <label>Criterios endoscópicos</label>
+                <input type="checkbox" name="endoscopico" value="sangrado_activo"> Sangrado activo visible<br>
+                <input type="checkbox" name="endoscopico" value="vaso_visible"> Vaso visible no sangrante<br>
+                <input type="checkbox" name="endoscopico" value="coagulo"> Coágulo adherido<br>
+                <input type="checkbox" name="endoscopico" value="lesiones_alto_riesgo"> Lesiones de alto riesgo<br>
+
+                <label>Parámetros de laboratorio</label>
+                <label>Hemoglobina:</label> <input type="text" name="hemoglobina" placeholder="mg/dL"><br>
+                <label>Hematocrito:</label> <input type="text" name="hematocrito" placeholder="%"><br>
+                <label>BUN/Creatinina:</label> <input type="text" name="bun_creatinina" placeholder="Relación"><br>
             </div>
 
             <div class="section">
                 <h2>5. Evaluación de Síndrome de Distrés Respiratorio Agudo (SDRA)</h2>
-                <!-- Campos de evaluación SDRA -->
+
+                <label>Inicio agudo</label>
+                <input type="checkbox" name="sdra" value="inicio_agudo"> Sí<br>
+
+                <label>Opacidades bilaterales</label>
+                <input type="checkbox" name="sdra" value="opacidades_bilaterales"> Sí<br>
+
+                <label>Edema pulmonar no cardiogénico</label>
+                <input type="checkbox" name="sdra" value="edema_pulmonar"> Sí<br>
+
+                <label>Hipoxemia (PaO₂/FiO₂)</label>
+                <select name="sdra_hipoxemia" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="no_sdra">> 300 mmHg (No SDRA)</option>
+                    <option value="leve">200-300 mmHg (Leve)</option>
+                    <option value="moderado">100-200 mmHg (Moderado)</option>
+                    <option value="grave">≤ 100 mmHg (Grave)</option>
+                </select>
             </div>
 
             <button type="submit" class="btn">Evaluar</button>
+            <button id="exportarExcel" class="btn btn-success">Exportar a Excel</button>
+
         </form>
     </div>
     <script src="js/evaluacion.js"></script>
